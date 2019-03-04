@@ -12,8 +12,9 @@
 		3CBA7647222D215F008E3E4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA7645222D215F008E3E4D /* Main.storyboard */; };
 		3CBA7649222D2160008E3E4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA7648222D2160008E3E4D /* Assets.xcassets */; };
 		3CBA764C222D2160008E3E4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CBA764A222D2160008E3E4D /* LaunchScreen.storyboard */; };
-		3CBA7657222D2160008E3E4D /* lifeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA7656222D2160008E3E4D /* lifeTests.swift */; };
+		3CBA7657222D2160008E3E4D /* LifeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA7656222D2160008E3E4D /* LifeTests.swift */; };
 		3CBA7662222D2160008E3E4D /* lifeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA7661222D2160008E3E4D /* lifeUITests.swift */; };
+		3CBA7670222D22BE008E3E4D /* Life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA766F222D22BE008E3E4D /* Life.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,11 +43,12 @@
 		3CBA764B222D2160008E3E4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CBA764D222D2160008E3E4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CBA7652222D2160008E3E4D /* lifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CBA7656222D2160008E3E4D /* lifeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lifeTests.swift; sourceTree = "<group>"; };
+		3CBA7656222D2160008E3E4D /* LifeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTests.swift; sourceTree = "<group>"; };
 		3CBA7658222D2160008E3E4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CBA765D222D2160008E3E4D /* lifeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lifeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CBA7661222D2160008E3E4D /* lifeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lifeUITests.swift; sourceTree = "<group>"; };
 		3CBA7663222D2160008E3E4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CBA766F222D22BE008E3E4D /* Life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Life.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				3CBA7648222D2160008E3E4D /* Assets.xcassets */,
 				3CBA764A222D2160008E3E4D /* LaunchScreen.storyboard */,
 				3CBA764D222D2160008E3E4D /* Info.plist */,
+				3CBA766F222D22BE008E3E4D /* Life.swift */,
 			);
 			path = life;
 			sourceTree = "<group>";
@@ -110,7 +113,7 @@
 		3CBA7655222D2160008E3E4D /* lifeTests */ = {
 			isa = PBXGroup;
 			children = (
-				3CBA7656222D2160008E3E4D /* lifeTests.swift */,
+				3CBA7656222D2160008E3E4D /* LifeTests.swift */,
 				3CBA7658222D2160008E3E4D /* Info.plist */,
 			);
 			path = lifeTests;
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CBA7670222D22BE008E3E4D /* Life.swift in Sources */,
 				3CBA7644222D215F008E3E4D /* ViewController.swift in Sources */,
 				3CBA7642222D215F008E3E4D /* AppDelegate.swift in Sources */,
 			);
@@ -265,7 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CBA7657222D2160008E3E4D /* lifeTests.swift in Sources */,
+				3CBA7657222D2160008E3E4D /* LifeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
