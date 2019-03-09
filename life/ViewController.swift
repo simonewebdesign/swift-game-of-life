@@ -9,10 +9,17 @@
 import UIKit
 
 //let glider = [(1, 0), (2, 1), (0, 2), (1, 2), (2, 2)]
+let initialGlider = [
+    IndexPath(item: 1, section: 0),
+    IndexPath(item: 6, section: 0),
+    IndexPath(item: 8, section: 0),
+    IndexPath(item: 9, section: 0),
+    IndexPath(item: 10, section: 0),
+]
 
 class ViewController: UIViewController {
     private let cells: [UIView] = []
-    private var aliveCells: [IndexPath] = []
+    private var aliveCells: [IndexPath] = initialGlider
     private var collectionView: UICollectionView?
 
     override func viewDidLoad() {
@@ -42,7 +49,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10 // cells.count
+        return 16 // cells.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
