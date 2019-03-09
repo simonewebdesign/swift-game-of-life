@@ -13,14 +13,18 @@ struct Life {
     static let offsets: Cells =             [(-1, -1), (-1, 0), (-1, 1), (0, -1),         (0, 1), (1, -1), (1, 0), (1, 1)]
     static let offsetsIncludingOwn: Cells = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 0), (0, 1), (1, -1), (1, 0), (1, 1)]
 
-//    func tick(cells: Cells) -> Cells {
-//        aliveCellAndNeighbors(cells).reduce([]) { acc, cell ->
-//
-//        },
-//        let isAlive = cells.contains()
-//
-//        return
-//    }
+    func tick(cells: Cells) -> Cells {
+        return aliveCellAndNeighbors(cells).reduce([]) { acc, cell in
+            let isAlive = cells.contains(cell: cell)
+            let numOfNeighbors = neighborsCount(cells, cell)
+
+            if (shouldLive(isAlive: isAlive, numOfNeighbors: numOfNeighbors)) {
+                return acc + [cell]
+            } else {
+                return acc
+            }
+        }
+    }
 
     private func aliveCellAndNeighbors(_ cells: Cells) -> Cells {
         return cells.reduce([]) { cells2, c1 in
