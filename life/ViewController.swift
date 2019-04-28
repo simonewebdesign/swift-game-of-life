@@ -19,7 +19,7 @@ let initialGlider = [
 
 class ViewController: UIViewController {
     private let cells: [UIView] = []
-    private var aliveCells: [IndexPath] = initialGlider
+    private var aliveCells: [IndexPath] = Life.initialGlider
     private var collectionView: UICollectionView?
 
     override func viewDidLoad() {
