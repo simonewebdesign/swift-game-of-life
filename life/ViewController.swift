@@ -1,37 +1,22 @@
-//
-//  ViewController.swift
-//  life
-//
-//  Created by Owen Worley on 04/03/2019.
-//  Copyright © 2019 lifeorg. All rights reserved.
-//
-
 import UIKit
 
 //let glider = [(1, 0), (2, 1), (0, 2), (1, 2), (2, 2)]
-let initialGlider = [
-    IndexPath(item: 1, section: 0),
-    IndexPath(item: 6, section: 0),
-    IndexPath(item: 8, section: 0),
-    IndexPath(item: 9, section: 0),
-    IndexPath(item: 10, section: 0),
-]
+let glider = Cells([Cell(3, 2), Cell(4, 3), Cell(2, 4), Cell(3, 4), Cell(4, 4)])
 
-//extension IndexPath {
-//    func from(cell: Cell) {
-//        return IndexPath(item: , section: <#T##Int#>)
-//    }
-//}
+extension IndexPath {
+    static func from(cell: Cell) -> IndexPath {
+        return IndexPath(item: cell.x + (cell.y * 27), section: 0)
+    }
+}
 
 class ViewController: UIViewController {
-    private let cells: [UIView] = []
-//    private var aliveCells: [IndexPath] = Life.initialGlider
-    private var aliveCells: [IndexPath] = [IndexPath(item: 0, section: 0), IndexPath(item: 1, section: 0)]
-    private var collectionView: UICollectionView?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    private let life = Life()
+    private let initialLiveCellsState: Cells = glider
+    private let numberOfCells = 1024
+    private var aliveCells: [IndexPath] = []
+    private var collectionView: UICollectionView!
+    private var numberOfCellsPerRow: Int = 27
+    private var timer: Timer?
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -39,7 +24,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .red
 
         let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(collectionView)
         collectionView.delegate = self
@@ -50,12 +35,26 @@ class ViewController: UIViewController {
         view.addSubview(collectionView)
 
         collectionView.pinToSuperViewEdges()
+        var newcells = self.life.tick(cells: initialLiveCellsState)
+
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
+            newcells = self.life.tick(cells: newcells)
+            newcells.forEach {
+                let indexPath = IndexPath.from(cell: $0)
+                self.collectionView.delegate?.collectionView?(self.collectionView, didSelectItemAt: indexPath)
+            }
+        })
     }
 }
 
+
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 316 // cells.count
+        return numberOfCells
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,6 +66,10 @@ extension ViewController: UICollectionViewDataSource {
             }
         }
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return .zero
     }
 }
 
@@ -93,7 +96,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width / 32
+        let width = collectionView.frame.size.width / CGFloat(numberOfCellsPerRow)
         return CGSize(width: width, height: width)
     }
 }

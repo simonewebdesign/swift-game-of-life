@@ -36,7 +36,7 @@ struct Life {
     private func aliveCellAndNeighbors(_ cells: Cells) -> Cells {
         return cells.reduce([]) { cells2, c1 in
             return Life.offsets.reduce(cells2) { cells3, c2 in
-                var set = cells
+                var set = cells3
                 let newCell = Cell(c1.x + c2.x, c1.y + c2.y)
                 set.insert(newCell)
                 return set
