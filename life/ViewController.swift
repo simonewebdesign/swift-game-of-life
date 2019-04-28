@@ -38,6 +38,8 @@ class ViewController: UIViewController {
         var newcells = self.life.tick(cells: initialLiveCellsState)
 
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
+            self.aliveCells = []
+            self.collectionView.reloadData()
             newcells = self.life.tick(cells: newcells)
             newcells.forEach {
                 let indexPath = IndexPath.from(cell: $0)
