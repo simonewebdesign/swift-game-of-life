@@ -17,9 +17,16 @@ let initialGlider = [
     IndexPath(item: 10, section: 0),
 ]
 
+//extension IndexPath {
+//    func from(cell: Cell) {
+//        return IndexPath(item: , section: <#T##Int#>)
+//    }
+//}
+
 class ViewController: UIViewController {
     private let cells: [UIView] = []
-    private var aliveCells: [IndexPath] = Life.initialGlider
+//    private var aliveCells: [IndexPath] = Life.initialGlider
+    private var aliveCells: [IndexPath] = [IndexPath(item: 0, section: 0), IndexPath(item: 1, section: 0)]
     private var collectionView: UICollectionView?
 
     override func viewDidLoad() {
@@ -32,7 +39,6 @@ class ViewController: UIViewController {
         view.backgroundColor = .red
 
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 80, height: 80)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(collectionView)
@@ -49,7 +55,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 16 // cells.count
+        return 316 // cells.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -77,17 +83,33 @@ extension ViewController: UICollectionViewDelegate {
     }
 }
 
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = UIScreen.main.bounds.width / 32
+        return CGSize(width: width, height: width)
+    }
+}
+
 extension UIView {
     func pinToSuperViewEdges() {
         guard let superview = superview else {
             assertionFailure("should have superview")
             return
         }
+
         NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalTo: superview.widthAnchor),
-            heightAnchor.constraint(equalTo: superview.heightAnchor),
-            leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-            trailingAnchor.constraint(equalTo: superview.trailingAnchor)
+            widthAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.widthAnchor),
+            heightAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.heightAnchor),
+            leadingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.leadingAnchor),
+            trailingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
 }

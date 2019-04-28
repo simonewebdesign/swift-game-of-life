@@ -16,6 +16,7 @@ struct Life {
     static let offsets: Cells = [Cell(-1, -1), Cell(-1, 0), Cell(-1, 1), Cell(0, -1), Cell(0, 1), Cell(1, -1), Cell(1, 0), Cell(1, 1)]
     static let offsetsIncludingOwn: Cells = [Cell(-1, -1), Cell(-1, 0), Cell(-1, 1), Cell(0, -1), Cell(0, 0), Cell(0, 1), Cell(1, -1), Cell(1, 0), Cell(1, 1)]
 
+    static let initialGlider: Cells = []
 
     func tick(cells: Cells) -> Cells {
         return aliveCellAndNeighbors(cells).reduce(Set<Cell>()) { acc, cell in
